@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Quest</title>
+
+    <!-- linking external css -->
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1 id="round_name">Digital Quest</h1> <!-- Heading of the page-->
+
+    {% if start== 0: %}
+    <!-- start -->
+    <form action="/start" method="POST" class="bottle">
+        <input type="submit" value="START" id="start">
+    </form>
+    {% endif %}
+
+    {% if start in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]: %}
+    <section class="bottle">
+        <!-- The question part -->
+        <!-- question number -->
+        <h3 class="question_number">{{questions[start-1][1]}}</h3>
+
+        <!-- question -->
+        <p class="question">{{questions[start-1][2]}}</p>
+
+        <!-- input box -->
+        <form class="input" method="POST" action="/input">
+            <!-- <label for="answer">answer</label> -->
+            <input type="text" id="answer" name="answer" placeholder="Answer...">
+            <input type="submit" value="submit" id="submit">
+        </form>
+
+        {% if status== 'wrong': %}
+        <!-- status -->
+        <h1 class="status">Wrong Answer !!</h1>
+        {% endif %}
+
+        <!-- clue -->
+        <p class="clue"><span class="bulb"></span>{{questions[start-1][3]}}</p>
+    </section>
+    {% endif %}
+
+    {% if start== 11: %}
+    <section class="bottle">
+        <h1 id="cleared">You have Cleared this round !!</h1>
+    </section>
+    {% endif %}
+
+    <!-- design-team -->
+    <h1 id="design_team">Design: @Yukthi</h1>
+</body>
+</html>
